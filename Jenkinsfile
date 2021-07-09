@@ -5,6 +5,11 @@ pipeline {
             label 'master'
         }
     }
+    
+    tools { 
+        maven 'maven' 
+        jdk 'openjdk-11' 
+    }
 
     options {
         disableConcurrentBuilds()
