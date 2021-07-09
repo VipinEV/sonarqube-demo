@@ -45,7 +45,7 @@ pipeline {
                     }
                     steps {
                         withSonarQubeEnv('sonarqube') {
-                            ehco "${scannerHome}"
+                            echo "${scannerHome}"
                             sh "${scannerHome}/bin/sonar-scanner"
                         }
 
