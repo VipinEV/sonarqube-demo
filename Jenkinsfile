@@ -41,6 +41,12 @@ pipeline {
                     }
                 }
 
+                stage("Quality Check") {
+                    steps {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
+
 //                stage('Sonarqube') {
 //                    environment {
 //                        scannerHome = tool 'SonarQubeScanner'
