@@ -35,10 +35,6 @@ pipeline {
                         echo "Building master ${BUILD_NUMBER}."
                         sh "mvn clean package"
                         junit testResults: '**/target/*-reports/TEST-*.xml'
-                        recordIssues(
-                                enabledForFailure: true, aggregatingResults: true,
-                                tools: [java(), checkStyle(pattern: 'target/checkstyle-result.xml', reportEncoding: 'UTF-8')]
-                        )
 
                     }
                 }
