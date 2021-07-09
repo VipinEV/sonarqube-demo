@@ -1,14 +1,14 @@
 pipeline {
 
     agent {
-        node{
+        node {
             label 'master'
         }
     }
-    
-    tools { 
-        maven 'maven' 
-        jdk 'openjdk-11' 
+
+    tools {
+        maven 'maven'
+        jdk 'openjdk-11'
     }
 
     options {
@@ -43,7 +43,9 @@ pipeline {
 
                 stage("Quality Check") {
                     steps {
-                        waitForQualityGate abortPipeline: true
+                        timeout(time: 3, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
                     }
                 }
 
