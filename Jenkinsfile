@@ -1,0 +1,56 @@
+pipeline {
+
+    agent {
+        node{
+            label 'master'
+        }
+    }
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        SERVICE_NAME = readMavenPom().getArtifactId()
+        VERSION = readMavenPom().getVersion()
+        COMMIT_ID = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+        BUILD_VERSION = "${VERSION}-${COMMIT_ID}"
+
+    }
+    stages {
+
+        stage('Build Master') {
+            when {
+                branch 'master'
+            }
+            stages {
+
+                stage("Build Artefact") {
+                    steps {
+                        echo "Building master ${BUILD_NUMBER}."
+                        sh "mvn clean package"
+                        junit testResults: '**/target/*-reports/TEST-*.xml'
+                        recordIssues(
+                                enabledForFailure: true, aggregatingResults: true,
+                                tools: [java(), checkStyle(pattern: 'target/checkstyle-result.xml', reportEncoding: 'UTF-8')]
+                        )
+
+                    }
+                }
+
+                stage('Sonarqube') {
+                    environment {
+                        scannerHome = tool 'SonarQubeScanner'
+                    }
+                    steps {
+                        withSonarQubeEnv('sonarqube') {
+                            sh "${scannerHome}/bin/sonar-scanner"
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+}
