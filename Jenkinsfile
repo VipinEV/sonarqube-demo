@@ -34,7 +34,7 @@ pipeline {
                     steps {
                         withSonarQubeEnv('sonarqube') {
                             echo "Building master ${BUILD_NUMBER}."
-                            sh "mvn clean install"
+                            sh "mvn clean install sonar:sonar"
                             junit testResults: '**/target/*-reports/TEST-*.xml'
                         }
 
