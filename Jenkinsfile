@@ -32,26 +32,28 @@ pipeline {
 
                 stage("Build Artefact") {
                     steps {
-                        echo "Building master ${BUILD_NUMBER}."
-                        sh "mvn clean install"
-                        junit testResults: '**/target/*-reports/TEST-*.xml'
-
-                    }
-                }
-
-                stage('Sonarqube') {
-                    environment {
-                        scannerHome = tool 'SonarQubeScanner'
-                    }
-                    steps {
                         withSonarQubeEnv('sonarqube') {
-                            echo "${scannerHome}"
-                            sh "${scannerHome}/bin/sonar-scanner"
+                            echo "Building master ${BUILD_NUMBER}."
+                            sh "mvn clean install"
+                            junit testResults: '**/target/*-reports/TEST-*.xml'
                         }
 
                     }
-
                 }
+
+//                stage('Sonarqube') {
+//                    environment {
+//                        scannerHome = tool 'SonarQubeScanner'
+//                    }
+//                    steps {
+//                        withSonarQubeEnv('sonarqube') {
+//                            echo "${scannerHome}"
+//                            sh "${scannerHome}/bin/sonar-scanner"
+//                        }
+//
+//                    }
+//
+//                }
             }
         }
     }
