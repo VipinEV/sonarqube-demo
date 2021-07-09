@@ -33,7 +33,7 @@ pipeline {
                 stage("Build Artefact") {
                     steps {
                         echo "Building master ${BUILD_NUMBER}."
-                        sh "mvn clean package"
+                        sh "mvn clean install"
                         junit testResults: '**/target/*-reports/TEST-*.xml'
 
                     }
