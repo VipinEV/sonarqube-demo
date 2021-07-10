@@ -113,6 +113,8 @@ Please use the declarative pipeline as below
                    cho "Building master ${BUILD_NUMBER}."
                    sh "mvn clean install sonar:sonar"
                    junit testResults: '**/target/*-reports/TEST-*.xml'
+                   // publish the JACOCO result
+                   jacoco(execPattern: 'target/jacoco.exec')
                    }
 
               }
@@ -129,6 +131,8 @@ Please use the declarative pipeline as below
 
 Build Artefact stage will connect with sonarqube instance and submit your code for deep scanning with coverage report from JACOCO.
 When you open sonarqube dashboard you will see a project created with your artefact id and the scan results will be published.
+
+Adding JACOCO jenkins plugin and the coverage publisher allows you to have a summary report embedded in Jenkins.
 
 ![alt text](./docs/project-view.png "Project View")
 
