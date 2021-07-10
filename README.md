@@ -12,7 +12,7 @@ Demonstrate the capabilities of integrating sonarqube in declarative pipeline.
 ## Usage
 
 You will have to host a sonarqube server instance in your development environment to start with.
-Recommend spin up an instance as a container.
+Recommend spin up an instance as a container. This uses an embedded H2 database (not for production), set up a PostgreSQL, Oracle, SQL Server database instance.
 
 ```shell
 docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:7.9.4-community
