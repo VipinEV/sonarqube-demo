@@ -36,6 +36,7 @@ pipeline {
                             echo "Building master ${BUILD_NUMBER}."
                             sh "mvn clean install sonar:sonar"
                             junit testResults: '**/target/*-reports/TEST-*.xml'
+                            jacoco(execPattern: 'target/jacoco.exec')
                         }
 
                     }
