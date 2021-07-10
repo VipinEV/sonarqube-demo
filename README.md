@@ -1,15 +1,15 @@
-# sonarqube-demo
+# SonarQube Demo
 
 Demonstrate the capabilities of integrating sonarqube in declarative pipeline.
 
 [PDF Version](readme.pdf)
 
-##Features
+## Features
 
 * Sonarqube instance integration
 * Jacoco code coverage
 
-##Usage
+## Usage
 
 You will have to host a sonarqube server instance in your development environment to start with.
 Recommend spin up an instance as a container.
@@ -133,7 +133,7 @@ When you open sonarqube dashboard you will see a project created with your artef
 
 ![alt text](./docs/project-view.png "Project View")
 
-###Quality Gate
+### Quality Gate
 
 A beautiful concept which allows you to write a set of rules according to your organisation standards and guidelines for code quality.
 Please visit the [documentation](https://docs.sonarqube.org/latest/user-guide/quality-gates/) and learn more.
@@ -213,6 +213,6 @@ The response will be a POST call with json body as below.
 }
 ```
 
-##Note
+## Note
 
 Feel free to reach out the writer <vipinev9@gmail.com> for any queries.
