@@ -13,7 +13,6 @@ Demonstrate the capabilities of integrating sonarqube in declarative pipeline.
 
 You will have to host a sonarqube server instance in your development environment to start with.
 Recommend spin up an instance as a container.
-Ubuntu users
 
 ```shell
 docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:7.9.4-community
