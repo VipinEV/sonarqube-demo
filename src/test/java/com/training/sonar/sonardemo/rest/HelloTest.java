@@ -24,16 +24,16 @@ class HelloTest {
   @Autowired
   private MockMvc mvc;
 
-  @Test
-  void whenGetHello_ThenStatus200()
-      throws Exception {
-
-    mvc.perform(MockMvcRequestBuilders.get("/v1/hello")
-        .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(content()
-            .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$", Matchers.is("Say Hello")));
-  }
+//  @Test
+//  void whenGetHello_ThenStatus200()
+//      throws Exception {
+//
+//    mvc.perform(MockMvcRequestBuilders.get("/v1/hello")
+//        .contentType(MediaType.APPLICATION_JSON))
+//        .andExpect(status().isOk())
+//        .andExpect(content()
+//            .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+//        .andExpect(jsonPath("$", Matchers.is("Say Hello")));
+//  }
 
 }
